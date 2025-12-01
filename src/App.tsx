@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
-import DashboardWidgets from './components/DashboardWidgets';
-import PanoramaViewer from './components/PanoramaViewer';
+import ImageGallery from './components/ImageGallery';
+import { driveFolders } from './config/driveFolders';
 
 function App() {
   const [activeView, setActiveView] = useState('panorama');
@@ -19,8 +19,20 @@ function App() {
     setIsBoundaryOpen(!isBoundaryOpen);
   };
 
+  const renderContent = () => {
+    const folder = driveFolders[activeView];
+    if (folder) {
+      return <ImageGallery folderId={folder.folderId} title={folder.title} />;
+    }
+    return (
+      <div className="w-full h-full bg-white/40 backdrop-blur-md rounded-3xl shadow-2xl p-8 border border-white/50 flex items-center justify-center">
+        <p className="text-[#1a1a2e] text-xl font-semibold">Select a view from the sidebar</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-400 via-pink-400 to-purple-500">
+    <div className="min-h-screen bg-gradient-to-br from-orange-400 via-pink-400 to-sky-500">
       <Sidebar
         activeView={activeView}
         onNavigate={handleNavigate}
@@ -33,11 +45,7 @@ function App() {
 
         <main className="flex-1 p-8">
           <div className="h-full min-h-[calc(100vh-8rem)]">
-            {activeView === 'panorama' ? (
-              <PanoramaViewer />
-            ) : (
-              <DashboardWidgets />
-            )}
+            {renderContent()}
           </div>
         </main>
       </div>
