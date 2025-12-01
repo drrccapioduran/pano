@@ -1,3 +1,5 @@
+please enhance this code to make functional:
+
 import { useEffect, useRef, useState } from 'react';
 import 'pannellum/build/pannellum.js';
 import 'pannellum/build/pannellum.css';
