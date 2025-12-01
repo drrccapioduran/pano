@@ -1,4 +1,4 @@
-import { Shield, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 interface SidebarProps {
   activeView: string;
@@ -26,7 +26,7 @@ export default function Sidebar({ activeView, onNavigate, isBoundaryOpen, onTogg
     <div className="w-64 bg-[#000080] h-screen fixed left-0 top-0 flex flex-col">
       <div className="p-4 flex items-center gap-3 border-b border-blue-600">
         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-          <Shield className="w-8 h-8 text-[#000080]" />
+          <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
         </div>
         <div className="text-white">
           <div className="font-bold text-sm">MDRRMO</div>
